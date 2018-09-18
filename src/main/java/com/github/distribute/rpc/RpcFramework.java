@@ -20,9 +20,9 @@ public class RpcFramework {
         System.out.println("Export service " + service.getClass().getName() + " on port " + port);
 
         ServerSocket server = new ServerSocket(port);
-        //Ñ­»·µÈ´ı£¬Ã¿À´Ò»¸öÇëÇó¿ªÆôÒ»ÌõÏß³Ì½øĞĞ´¦Àí
+        //å¾ªç¯ç­‰å¾…ï¼Œæ¯æ¥ä¸€ä¸ªè¯·æ±‚å¼€å¯ä¸€æ¡çº¿ç¨‹è¿›è¡Œå¤„ç†
         for (;;) {
-            final Socket socket = server.accept();//tcp×èÈûµÈ´ı
+            final Socket socket = server.accept();//tcpé˜»å¡ç­‰å¾…
             try {
                 new Thread(new Runnable() {
 
@@ -53,12 +53,12 @@ public class RpcFramework {
                                         output.close();
                                     }
                                 }  catch (Throwable t) {
-                                	t.printStackTrace();
+                                    t.printStackTrace();
                                 } finally {
                                     input.close();
                                 }
-                            } 
-                            
+                            }
+
                             finally {
                                 socket.close();
                             }
@@ -100,7 +100,7 @@ public class RpcFramework {
                             ObjectOutputStream output = new ObjectOutputStream(socket.getOutputStream());
 
                             try {
-                            	output.writeUTF(interfaceClass.getName());
+                                output.writeUTF(interfaceClass.getName());
                                 output.writeUTF(method.getName());
                                 output.writeObject(method.getParameterTypes());
                                 output.writeObject(args);
@@ -129,4 +129,3 @@ public class RpcFramework {
     }
 
 }
-
